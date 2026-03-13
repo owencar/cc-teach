@@ -34,4 +34,5 @@ urlpatterns = [
     path('inventory/<int:year>/', InventoryView.as_view(), name='inventory_view'),
     path('inventory/<int:year>/delete/<int:ilid>/', InventoryLogDelete.as_view(), name='inventory_log_delete'),
     path('inventory/import/', InventoryImport.as_view(), name='inventory_import'),
+    path('t/a/r/<int:roled>', TestApplicantListByRole.as_view() ),
 ]
