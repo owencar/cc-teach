@@ -491,3 +491,22 @@ class TestModelListByYearAfter(ListView):
     model = Model
     def get_queryset(self):
         return Model.objects.filter(date_buy__year__gte=self.kwargs['year'])
+    
+
+class LogView(DetailView):  #預設試圖名稱:log_detail.html
+    model = Log 
+
+class TestApplicantLending(ListView):
+    def get_queryset(self):
+        return Applicant.objects.filter(
+            log__date_apply__isnull = False,
+            log__date_return__isnull = True,
+            log__equip__model__date_buy__year__gte = 2020,
+        ).distinct()
+    
+class TestEquipLending(ListView):
+    def get_queryset(self):
+        return  Equip.objects.filter(
+            log__date_apply__isnull = False,
+            log__date_return__isnull = True
+        )
